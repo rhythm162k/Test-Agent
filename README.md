@@ -1,4 +1,4 @@
-# Test Agent
+# Test Agent (Made with Claude.ai)
 
 A local, offline AI agent with a web interface that writes tests for you. Paste a React component or an Express route, and it first **plans** the tests, then **writes** them, then gives a **written summary** of what was covered.
 
