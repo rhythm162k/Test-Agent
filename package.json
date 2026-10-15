@@ -1,0 +1,6 @@
+{
+  "name": "test-agent",
+  "version": "1.0.0",
+  "description": "Local, offline test-writing agent (Ollama + tiny Node server)",
+  "scripts": { "start": "node server.js" }
+}

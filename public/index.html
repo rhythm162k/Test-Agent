@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" type="module"></script>
+    <title>Test Agent</title>
+  </head>
+  <body>
+    <header>
+      <h1>Test Agent</h1>
+      <div class="seg" role="radiogroup" aria-label="What are you testing">
+        <label
+          ><input type="radio" name="kind" value="react" checked /><span
+            >React component</span
+          ></label
+        >
+        <label
+          ><input type="radio" name="kind" value="express" /><span
+            >Express route</span
+          ></label
+        >
+      </div>
+      <select id="model" aria-label="Model"></select>
+    </header>
+    <main>
+      <section class="left">
+        <div class="box">
+          <div class="bar"><b>Code to test</b></div>
+          <textarea
+            id="code"
+            placeholder="Paste a component, hook, route or controller here"
+            spellcheck="false"
+          ></textarea>
+        </div>
+        <input
+          type="text"
+          id="notes"
+          placeholder="Optional notes: file path, things to mock, what matters most"
+        />
+        <div class="actions">
+          <button class="primary" id="planBtn">Plan tests</button>
+          <button id="stopBtn" disabled>Stop</button>
+          <span class="status" id="status"></span>
+        </div>
+      </section>
+      <section class="right">
+        <div class="box">
+          <div class="bar">
+            <b>Test plan</b><span>edit before writing</span>
+          </div>
+          <textarea
+            id="plan"
+            placeholder="The plan appears here. Change anything you disagree with."
+            spellcheck="false"
+          ></textarea>
+        </div>
+        <div class="box">
+          <div class="bar">
+            <b>Test file</b
+            ><button id="writeBtn" class="primary" disabled>Write tests</button
+            ><button id="copyBtn" disabled>Copy</button>
+          </div>
+          <pre id="out" aria-live="polite"></pre>
+        </div>
+        <div class="box summarybox">
+          <div class="bar">
+            <b>Test summary</b><button id="sumCopy" disabled>Copy</button>
+          </div>
+          <div class="summary empty" id="summary">
+            Appears after the test file is written.
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

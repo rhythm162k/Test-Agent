@@ -1,0 +1,239 @@
+:root {
+  --bg: #e9edf1;
+  --panel: #fff;
+  --ink: #1b2430;
+  --mute: #5d6b7a;
+  --line: #cdd5dd;
+  --accent: #0b6e5f;
+  --accent-ink: #fff;
+  --code: #f4f6f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14191f;
+    --panel: #1c232b;
+    --ink: #e6ebf0;
+    --mute: #93a1b0;
+    --line: #303a45;
+    --accent: #3dbda7;
+    --accent-ink: #06211c;
+    --code: #12171c;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    15px/1.5 -apple-system,
+    "SF Pro Text",
+    system-ui,
+    sans-serif;
+}
+textarea,
+pre {
+  font-size: 13px;
+  font-family: "SF Mono", ui-monospace, Menlo, monospace;
+}
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+  padding: 14px 20px;
+}
+h1 {
+  margin: 0 auto 0 0;
+  font-weight: 650;
+  font-size: 16px;
+}
+select,
+input[type="text"] {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  padding: 6px 8px;
+  color: var(--ink);
+  font: inherit;
+}
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.seg label {
+  cursor: pointer;
+  padding: 6px 12px;
+}
+.seg input {
+  position: absolute;
+  opacity: 0;
+}
+.seg label:has(input:checked) {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 650;
+}
+.seg label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px 20px;
+  height: calc(100vh - 62px);
+}
+/* Each column has fixed row sizes, so one box growing never resizes another */
+.left {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  gap: 10px;
+  min-height: 0;
+}
+.right {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 2fr) auto;
+  gap: 10px;
+  min-height: 0;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  min-height: 0;
+  overflow: hidden;
+}
+.bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 12px;
+  color: var(--mute);
+}
+.bar b {
+  margin-right: auto;
+  color: var(--ink);
+}
+textarea,
+pre {
+  flex: 1;
+  margin: 0;
+  outline: none;
+  border: 0;
+  background: var(--code);
+  padding: 12px;
+  min-height: 0;
+  overflow: auto;
+  resize: none;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+button {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  padding: 7px 14px;
+  color: var(--ink);
+  font: inherit;
+}
+button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status {
+  color: var(--mute);
+}
+.err {
+  color: #c2410c;
+}
+
+.summary {
+  padding: 10px 12px;
+  max-height: 230px;
+  overflow: auto;
+}
+.summary.empty {
+  color: var(--mute);
+}
+.totals {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+.totals b {
+  display: block;
+  font-size: 20px;
+  line-height: 1.2;
+}
+.totals span {
+  color: var(--mute);
+  font-size: 13px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 130px 1fr 28px;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.track {
+  border-radius: 4px;
+  background: var(--code);
+  height: 8px;
+  overflow: hidden;
+}
+.fill {
+  background: var(--accent);
+  height: 100%;
+}
+.row .n {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+@media (max-width: 860px) {
+  main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+  }
+  .left .box,
+  .right .box:not(.summarybox) {
+    flex: none;
+    height: 280px;
+  }
+}
